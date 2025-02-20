@@ -1,10 +1,20 @@
 import 'package:flutter/material.dart';
+import 'package:mark/APIS/registrationapi.dart';
 import 'package:mark/login.dart';
 
 
 class SignupPage extends StatelessWidget {
-  const SignupPage({super.key});
+   SignupPage({super.key});
+  final TextEditingController usernameController = TextEditingController();
+  final TextEditingController emailController = TextEditingController();
+  final TextEditingController passwordController = TextEditingController();
+  final TextEditingController confirmPasswordController = TextEditingController();
+  final TextEditingController phoneNumberController = TextEditingController();
+  final TextEditingController genderController = TextEditingController();
+  final TextEditingController ageController = TextEditingController();
+  final TextEditingController placeController = TextEditingController();
 
+  
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
@@ -21,7 +31,7 @@ class SignupPage extends StatelessWidget {
               children: <Widget>[
                 Column(
                   children: <Widget>[
-                    const SizedBox(height: 60.0),
+                 
                     const Text(
                       "Sign up",
                       style: TextStyle(
@@ -43,8 +53,10 @@ class SignupPage extends StatelessWidget {
                 Column(
                   children: <Widget>[
                     TextField(
+
+                        controller: usernameController,
                       decoration: InputDecoration(
-                          hintText: "Username",
+                          hintText: "Name",
                           border: OutlineInputBorder(
                               borderRadius: BorderRadius.circular(18),
                               borderSide: BorderSide.none),
@@ -55,6 +67,36 @@ class SignupPage extends StatelessWidget {
                     ),
                     const SizedBox(height: 20),
                     TextField(
+
+                        controller: placeController,
+                      decoration: InputDecoration(
+                          hintText: "Place",
+                          border: OutlineInputBorder(
+                              borderRadius: BorderRadius.circular(18),
+                              borderSide: BorderSide.none),
+                          fillColor: const Color.fromARGB(255, 79, 200, 93)
+                              .withOpacity(0.1),
+                          filled: true,
+                          prefixIcon: const Icon(Icons.person)),
+                    ),
+                    const SizedBox(height: 20),
+                    TextField(
+                      controller:
+                          ageController,  
+                      decoration: InputDecoration(
+                        hintText: "Age",
+                        border: OutlineInputBorder(
+                          borderRadius: BorderRadius.circular(18),
+                          borderSide: BorderSide.none,
+                        ),
+                        fillColor: const Color.fromARGB(255, 87, 185, 111).withOpacity(0.1),
+                        filled: true,
+                        prefixIcon: const Icon(Icons.cake),
+                      ),
+                    ),
+                    const SizedBox(height: 20),
+                    TextField(
+                      controller: emailController,
                       decoration: InputDecoration(
                           hintText: "Email",
                           border: OutlineInputBorder(
@@ -67,6 +109,7 @@ class SignupPage extends StatelessWidget {
                     ),
                     const SizedBox(height: 20),
                     TextField(
+                      controller: passwordController,
                       decoration: InputDecoration(
                         hintText: "Password",
                         border: OutlineInputBorder(
@@ -81,6 +124,7 @@ class SignupPage extends StatelessWidget {
                     ),
                     const SizedBox(height: 20),
                     TextField(
+                      controller: confirmPasswordController,
                       decoration: InputDecoration(
                         hintText: "Confirm Password",
                         border: OutlineInputBorder(
@@ -92,8 +136,9 @@ class SignupPage extends StatelessWidget {
                         prefixIcon: const Icon(Icons.password),
                       ),
                       obscureText: true,
-                    ),
+                    ), const SizedBox(height: 20),
                     TextField(
+                      controller: phoneNumberController,
                       decoration: InputDecoration(
                           hintText: "Phone number",
                           border: OutlineInputBorder(
@@ -106,6 +151,7 @@ class SignupPage extends StatelessWidget {
                     ),
                     const SizedBox(height: 20),
                     TextField(
+                      controller: genderController,
                       decoration: InputDecoration(
                           hintText: "Gender",
                           border: OutlineInputBorder(
@@ -122,7 +168,23 @@ class SignupPage extends StatelessWidget {
                 Container(
                     padding: const EdgeInsets.only(top: 3, left: 3),
                     child: ElevatedButton(
-                      onPressed: () {},
+                      onPressed: () {
+                        
+registrationdataApi(
+                          {
+                            "Username": emailController.text,
+                            "Place": placeController.text,
+                            
+                            "password": passwordController.text,
+                            "Age": ageController.text,
+                            "PhoneNo": phoneNumberController.text,  
+                            'Name': usernameController.text,
+                            'Gender':genderController.text  
+
+
+                          },context
+);
+                      },
                       child: const Text(
                         "Sign up",
                         style: TextStyle(fontSize: 20),

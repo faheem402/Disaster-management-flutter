@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:mark/homepage.dart';
 import 'package:mark/login.dart';
-
 import 'package:mark/register.dart';
 
 void main() {

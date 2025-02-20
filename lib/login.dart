@@ -1,10 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:animate_do/animate_do.dart';
+import 'package:mark/APIS/loginpageapi.dart';
 import 'package:mark/homepage.dart';
 
 import 'package:mark/register.dart';
 
 class LoginPage extends StatelessWidget {
+  final TextEditingController username = TextEditingController();
+  final TextEditingController password = TextEditingController();
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -110,6 +113,7 @@ class LoginPage extends StatelessWidget {
                                               color: Color.fromRGBO(
                                                   98, 211, 111, 1)))),
                                   child: TextField(
+                                    controller: username,
                                     decoration: InputDecoration(
                                         border: InputBorder.none,
                                         hintText: "Email or Phone number",
@@ -121,6 +125,7 @@ class LoginPage extends StatelessWidget {
                                 Container(
                                   padding: EdgeInsets.all(8.0),
                                   child: TextField(
+                                    controller: password,
                                     obscureText: true,
                                     decoration: InputDecoration(
                                         border: InputBorder.none,
@@ -147,11 +152,12 @@ class LoginPage extends StatelessWidget {
                                   Color.fromRGBO(98, 211, 111, 1)
                                 ])),
                             child: Center(
-                              child: InkWell(onTap: (){ Navigator.push(
-                                          context,
-                                          MaterialPageRoute(
-                                            builder: (context) => Homepage(),
-                                          ));},
+                              child: InkWell(onTap: (){
+                                print('object');
+                               loginApi(
+                                    username.text, password.text, context);
+                               
+                                          },
                                 child: Text(
                                   "Login",
                                   style: TextStyle(
@@ -164,13 +170,13 @@ class LoginPage extends StatelessWidget {
                       SizedBox(
                         height: 70,
                       ),
-                      FadeInUp(
-                          duration: Duration(milliseconds: 2000),
-                          child: Text(
-                            "Forgot Password?",
-                            style: TextStyle(
-                                color: Color.fromRGBO(143, 148, 251, 1)),
-                          )),
+                      // FadeInUp(
+                      //     duration: Duration(milliseconds: 2000),
+                      //     child: Text(
+                      //       "Forgot Password?",
+                      //       style: TextStyle(
+                      //           color: Color.fromRGBO(143, 148, 251, 1)),
+                      //     )),
                       SizedBox(
                         height: 10,
                       ),
